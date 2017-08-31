@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
+import SearchForm from './searchform';
 
 ReactDOM.render(
-		<h1>Hello, world!</h1>,
+		<SearchForm />,
 		document.getElementById('root')
 		);
 registerServiceWorker();
