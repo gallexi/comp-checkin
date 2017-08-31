@@ -45,8 +45,10 @@ router.get('/', function(req, res) {
 router.route('/dancers')
 //retrieve all comments from the database
     .get(function(req, res) {
+	    console.log(req);
 	    //looks at our Dancer Schema
-	    Dancer.find(function(err, dancers) {
+	    Dancer.find({studio: req.query.studio}, //this isn't done, needs to
+			function(err, dancers) { //be able to accept name OR studio
 		    if (err)
 			res.send(err);
 		    //responds with a json object of our database dancers.

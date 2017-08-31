@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+
 class SearchForm extends React.Component {
     constructor(props) {
 	super(props);
@@ -14,29 +16,37 @@ class SearchForm extends React.Component {
     }
 
     handleSubmit(event) {
-	alert('Name: ' + this.state.fullname + ' ' + this.state.studio);
-	event.preventDefault();
-	// here we return the options for checking in
+       	event.preventDefault();
+	let name = this.state.fullname.trim();
+	let studio = this.state.studio.trim();
+
+	axios.get(this.props.url, {params: {name: name, studio: studio}})
+	    .then(res => {
+		    this.props.displaySearchResults(res); //change the state prolly idk
+		})
+	    .catch(err => {
+		    console.error(err);
+	});
     }
 
     render() {
-	return (
-		<form onSubmit={this.handleSubmit}>
-        <label>
-		Name:
-		<input type="text" name="fullname" 
-		 value={this.state.fullname} 
-		 onChange={this.handleChange} />
-        </label>
-	<label>
-		Studio:
-		<input type="text" name="studio"
-		value={this.state.studio}
-		onChange={this.handleChange} />
-	</label>
-        <input type="submit" value="Submit" />
-      </form>
-		);
+        return (
+	    <form onSubmit={this.handleSubmit}>
+	        <label>
+		    Name:
+		    <input type="text" name="fullname" 
+	             value={this.state.fullname} 
+		     onChange={this.handleChange} />
+	        </label>
+	        <label>
+		    Studio:
+		    <input type="text" name="studio"
+		    value={this.state.studio}
+		    onChange={this.handleChange} />
+	        </label>
+                <input type="submit" value="Submit" />
+            </form>
+	);
     }
 }
 
