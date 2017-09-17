@@ -2,52 +2,61 @@ import React from 'react';
 import axios from 'axios';
 
 class SearchForm extends React.Component {
-    constructor(props) {
-	super(props);
-	this.state = {fullname: '', studio: ''};
+  constructor(props) {
+    super(props);
 
-	this.handleChange = this.handleChange.bind(this);
-	this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    this.state = {fullname: '', studio: ''};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    handleChange(event) {
-	this.setState({[event.target.name]: event.target.value});
-	// here we can maybe make suggestions from the db
-    }
+  handleChange(event) {
+	   this.setState({[event.target.name]: event.target.value});
+  }
 
-    handleSubmit(event) {
-       	event.preventDefault();
-	let name = this.state.fullname.trim();
-	let studio = this.state.studio.trim();
+  handleSubmit(event) {
+    event.preventDefault();
+    let fullname = this.state.fullname.trim();
+    let studio = this.state.studio.trim();
 
-	axios.get(this.props.url, {params: {name: name, studio: studio}})
-	    .then(res => {
-		    this.props.displaySearchResults(res); //change the state prolly idk
-		})
+    axios.get(this.props.url, {params: {fullname: fullname, studio: studio}})
+      .then(res => {
+        this.props.handoffSearchResults(res);
+      })
 	    .catch(err => {
-		    console.error(err);
-	});
-    }
+        console.error(err);
+      }
+    );
+  }
 
-    render() {
-        return (
+  render() {
+    return (
 	    <form onSubmit={this.handleSubmit}>
-	        <label>
-		    Name:
-		    <input type="text" name="fullname" 
-	             value={this.state.fullname} 
-		     onChange={this.handleChange} />
-	        </label>
-	        <label>
-		    Studio:
-		    <input type="text" name="studio"
-		    value={this.state.studio}
-		    onChange={this.handleChange} />
-	        </label>
-                <input type="submit" value="Submit" />
-            </form>
-	);
-    }
+        <div className="field">
+          <label className="label">Enter name and/or studio or school affiliation</label>
+          <div className="control">
+            <input type="text" name="fullname"
+                   className="input is-primary"
+	                 value={this.state.fullname}
+                   placeholder="Name"
+                   onChange={this.handleChange} />
+          </div>
+          <div className="control">
+            <input type="text" name="studio"
+                   className="input is-primary"
+	                 value={this.state.studio}
+                   placeholder="Affiliation"
+                   onChange={this.handleChange} />
+          </div>
+        </div>
+        <div className="field">
+          <div className="control">
+            <input className="button is-primary" type="submit" value="Search" />
+          </div>
+        </div>
+      </form>
+    );
+  }
 }
 
 export default SearchForm;

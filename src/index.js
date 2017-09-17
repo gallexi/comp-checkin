@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
-import SearchForm from './searchform';
+import Forms from './forms';
+import 'bulma/css/bulma.css'
 
 ReactDOM.render(
-		<SearchForm displaySearchResults = {(res) => console.log(res)} url='http://localhost:3001/api/dancers'/>,
+		<Forms/>,
 		document.getElementById('root')
-		);
-registerServiceWorker();
+	);
