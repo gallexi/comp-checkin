@@ -68,7 +68,7 @@ class SelectForm extends React.Component {
     const thankYou =
       <div>
         <h1> Dancers successfully checked in! </h1>
-        <button className="button is-primary"> Start Over </button>
+        <button className="button is-primary" onClick={this.props.startOver}> Start Over </button>
       </div>
 
     return this.state.value === 'select' ? selectDancers : thankYou

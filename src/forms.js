@@ -16,7 +16,7 @@ class Forms extends React.Component {
   }
 
   startOver() {
-    this.state = {value: 'search', searchResults: []}
+    this.setState({value: 'search', searchResults: []});
   }
 
   render() {
