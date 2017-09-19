@@ -45,7 +45,6 @@ router.route('/dancers')
     Dancer.find({$or: [{studio: {'$regex': req.query.studio, '$options':'i'}},
                        {fullname: {'$regex': req.query.fullname, '$options':'i'}}]},
 		function(err, dancers) {
-      console.log(dancers);
       if (err)
         res.send(err);
 		  res.json(dancers)
@@ -67,22 +66,16 @@ router.route('/dancers')
   })
 
   .put(function(req, res) {
-    let error = null;
     let dancers = req.body.params.dancers;
     for(let i = 0; i < dancers.length; i++) {
-      Dancer.find({_id: dancers[i]},
-        function(err, dancer) {
-          dancer = dancer[0];
-          console.log('hello');
+      Dancer.update({_id: dancers[i]}, {$set: { checkedin: true }},
+        function (err, results){
           if (err)
             res.send(err);
-          Dancer.update({_id: dancer._id}, {$set: { checkedin: true }});
         }
-      )
+      );
     }
-    if (error)
-      res.send(error);
-    res.json({message: 'Dancer(s) successfully checked in!'})
+    res.json({message: 'Dancer(s) successfully checked in!'});
   });
 
 app.use('/api', router);
