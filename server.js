@@ -42,7 +42,7 @@ router.get('/', function(req, res) {
 
 router.route('/dancers')
   .get(function(req, res) {
-    Dancer.find({$or: [{studio: {'$regex': req.query.studio, '$options':'i'}},
+    Dancer.find({$and: [{studio: {'$regex': req.query.studio, '$options':'i'}},
                        {fullname: {'$regex': req.query.fullname, '$options':'i'}}]},
 		function(err, dancers) {
       if (err)
