@@ -47,28 +47,38 @@ class SelectForm extends React.Component {
     )
 
     const selectDancers =
-	    <form onSubmit={this.handleSubmit}>
-        <div className='field'>
-          <div className='label'>Select dancers to check in</div>
-          <div className='control'>
-            <div className='select is-multiple'>
-              <select multiple size={dancerList.length} onChange={this.handleChange}>
-                {dancerList}
-              </select>
-            </div>
+      <div className='container'>
+        <div className='columns'>
+          <div className='column is-half is-offset-one-quarter'>
+      	    <form onSubmit={this.handleSubmit}>
+              <div className='field'>
+                <div className='label'>Select dancers to check in</div>
+                <div className='control'>
+                  <div className='select is-multiple'>
+                    <select multiple size={dancerList.length} onChange={this.handleChange}>
+                      {dancerList}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <h1> Total owed: {this.state.total} </h1>
+              <div className="field">
+                <div className="control">
+                  <input type="submit" value="Check in" className="button is-primary" />
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-        <h1> Total owed: {this.state.total} </h1>
-        <div className="field">
-          <div className="control">
-            <input type="submit" value="Check in" className="button is-primary" />
-          </div>
-        </div>
-      </form>
+      </div>
     const thankYou =
-      <div>
-        <h1> Dancers successfully checked in! </h1>
-        <button className="button is-primary" onClick={this.props.startOver}> Start Over </button>
+      <div className='container'>
+        <div className='columns'>
+          <div className='column is-half is-offset-one-quarter'>
+            <h1> Dancers successfully checked in! </h1>
+            <button className="button is-primary" onClick={this.props.startOver}> Start Over </button>
+          </div>
+        </div>
       </div>
 
     return this.state.value === 'select' ? selectDancers : thankYou

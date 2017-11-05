@@ -31,30 +31,36 @@ class SearchForm extends React.Component {
 
   render() {
     return (
-	    <form onSubmit={this.handleSubmit}>
-        <div className="field">
-          <label className="label">Enter name and/or studio or school affiliation</label>
-          <div className="control">
-            <input type="text" name="fullname"
-                   className="input is-primary"
-	                 value={this.state.fullname}
-                   placeholder="Name"
-                   onChange={this.handleChange} />
-          </div>
-          <div className="control">
-            <input type="text" name="studio"
-                   className="input is-primary"
-	                 value={this.state.studio}
-                   placeholder="Affiliation"
-                   onChange={this.handleChange} />
+      <div className='container'>
+        <div className='columns'>
+          <div className='column is-half is-offset-one-quarter'>
+      	    <form onSubmit={this.handleSubmit}>
+              <div className="field">
+                <label className="label">Enter name and/or studio or school affiliation</label>
+                <div className="control">
+                  <input type="text" name="fullname"
+                         className="input is-primary"
+      	                 value={this.state.fullname}
+                         placeholder="Name"
+                         onChange={this.handleChange} />
+                </div>
+                <div className="control">
+                  <input type="text" name="studio"
+                         className="input is-primary"
+      	                 value={this.state.studio}
+                         placeholder="Affiliation"
+                         onChange={this.handleChange} />
+                </div>
+              </div>
+              <div className="field">
+                <div className="control">
+                  <input className="button is-primary" type="submit" value="Search" />
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-        <div className="field">
-          <div className="control">
-            <input className="button is-primary" type="submit" value="Search" />
-          </div>
-        </div>
-      </form>
+      </div>
     );
   }
 }
