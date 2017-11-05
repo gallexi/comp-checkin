@@ -21,7 +21,7 @@ class Forms extends React.Component {
 
   render() {
     let state = this.state.value;
-    const url = 'http://localhost:3001/api/dancers';
+    const url = 'api/dancers';
 
     switch (state) {
       case 'search':
