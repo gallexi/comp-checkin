@@ -11,7 +11,7 @@ var router = express.Router();
 
 //set our port to either a predetermined port number if you have set
 //it up, or 3001
-var port = process.env.API_PORT || 8080;
+var port = process.env.API_PORT || 80;
 
 //db config
 var mongoUri = process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost:27017';
